@@ -25,7 +25,7 @@ class SignUpController extends Controller
             if (!empty($users)) {
                 return view('signup', ['errorMessage' => 'That email is already in use']);
             } else {
-                return view('signup');
+                return redirect()->intended('/user/');
             }
         }
     }
