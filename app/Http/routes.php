@@ -16,3 +16,5 @@ Route::get('/', 'IndexController@getIndex');
 Route::post('/', 'IndexController@login');
 
 Route::get('/user/', 'UserController@userPage');
+
+Route::get('/sign-up/', 'SignUpController@signUpPage');

@@ -36,12 +36,19 @@ class ExampleTest extends TestCase
              ->see('You are logged in.');
     }
 
-    public function testLoginWithExistentUserCaseInsensitie()
+    public function testLoginWithExistentUserCaseInsensitive()
     {
         $this->visit('/')
              ->type('UsEr@tWiLiO.cOm', 'email')
              ->type('password', 'password')
              ->press('Log in')
              ->see('You are logged in.');
+    }
+
+    public function testSignUpPage()
+    {
+        $this->visit('/')
+             ->click('Sign up for an account here')
+             ->see('Create an account');
     }
 }
