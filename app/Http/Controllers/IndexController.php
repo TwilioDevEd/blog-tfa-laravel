@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 use App\Http\Requests;
 
 class IndexController extends Controller
@@ -15,11 +15,21 @@ class IndexController extends Controller
 
     public function login(Request $request)
     {
-        $username = $request->input('username');
+        $email = $request->input('email');
         $password = $request->input('password');
-        if ($username == NULL || $password == NULL) {
-            $errorMessage = 'Incorrect Username or Password';
+        $errorMessage = '';
+        if ($email == NULL || $password == NULL) {
+            $errorMessage = 'Incorrect Email or Password';
+            return view('index', ['errorMessage' => $errorMessage]);
+        } else {
+            if (Auth::attempt(['email' => $email, 'password' => $password])) {
+                return redirect()->intended('user');
+            } else {
+                $errorMessage = 'Incorrect Email or Password';
+                return view('index', ['errorMessage' => $errorMessage]);
+            }
         }
-        return view('index', ['errorMessage' => $errorMessage]);
+        
+        
     }
 }

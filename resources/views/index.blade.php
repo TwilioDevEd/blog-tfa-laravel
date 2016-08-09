@@ -24,8 +24,8 @@
         <form method="POST">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <fieldset>
-            <label>Username</label>
-            <input id="username" type="text" name="username">
+            <label>Email</label>
+            <input id="email" type="text" name="email">
             <label>Password</label>
             <input id="password" type="password" name="password">
             <br/>
