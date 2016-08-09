@@ -15,7 +15,7 @@ class IndexController extends Controller
 
     public function login(Request $request)
     {
-        $email = $request->input('email');
+        $email = strtolower($request->input('email'));
         $password = $request->input('password');
         $isAuthenticated = Auth::attempt(['email' => $email, 'password' => $password]);
 

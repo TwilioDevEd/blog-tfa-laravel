@@ -35,4 +35,13 @@ class ExampleTest extends TestCase
              ->press('Log in')
              ->see('You are logged in.');
     }
+
+    public function testLoginWithExistentUserCaseInsensitie()
+    {
+        $this->visit('/')
+             ->type('UsEr@tWiLiO.cOm', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->see('You are logged in.');
+    }
 }
