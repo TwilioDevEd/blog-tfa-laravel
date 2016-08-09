@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
+use Auth;
 
 class SignUpController extends Controller
 {
@@ -25,7 +26,12 @@ class SignUpController extends Controller
             if (!empty($users)) {
                 return view('signup', ['errorMessage' => 'That email is already in use']);
             } else {
-                return redirect()->intended('/user/');
+                $id = DB::table('users')->insertGetId(
+                    ['email' => $email, 'password' => $password1, 'name' => $email]
+                );
+                if (Auth::loginUsingId($id)) {
+                   return redirect()->intended('/user/');
+                }
             }
         }
     }

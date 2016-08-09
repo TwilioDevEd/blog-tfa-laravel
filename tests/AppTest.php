@@ -81,4 +81,10 @@ class ExampleTest extends TestCase
              ->press('create_account_btn')
              ->see('You are logged in.');
     }
+
+    public function testAccessUserPageWithoutCredentials()
+    {
+        $this->visit('/user/')
+             ->see('Don\'t have an account?');
+    }
 }
