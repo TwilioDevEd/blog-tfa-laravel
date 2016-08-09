@@ -15,3 +15,4 @@ Route::get('/', 'IndexController@getIndex');
 
 Route::post('/', 'IndexController@login');
 
+Route::get('/user/', 'UserController@userPage');

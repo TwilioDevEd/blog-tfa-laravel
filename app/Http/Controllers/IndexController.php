@@ -17,19 +17,12 @@ class IndexController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        $errorMessage = '';
-        if ($email == NULL || $password == NULL) {
-            $errorMessage = 'Incorrect Email or Password';
-            return view('index', ['errorMessage' => $errorMessage]);
+        $isAuthenticated = Auth::attempt(['email' => $email, 'password' => $password]);
+
+        if (!$isAuthenticated) {
+            return view('index', ['errorMessage' => 'Incorrect Email or Password']);
         } else {
-            if (Auth::attempt(['email' => $email, 'password' => $password])) {
-                return redirect()->intended('user');
-            } else {
-                $errorMessage = 'Incorrect Email or Password';
-                return view('index', ['errorMessage' => $errorMessage]);
-            }
+            return redirect()->intended('/user/');
         }
-        
-        
     }
 }

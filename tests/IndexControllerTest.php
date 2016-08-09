@@ -27,4 +27,12 @@ class ExampleTest extends TestCase
              ->see('Incorrect Email or Password');
     }
 
+    public function testLoginWithExistentUserAndCorrectPassword()
+    {
+        $this->visit('/')
+             ->type('user@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->see('You are logged in.');
+    }
 }
