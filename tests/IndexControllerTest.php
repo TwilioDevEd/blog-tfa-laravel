@@ -6,14 +6,16 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
-    public function testBasicExample()
+    public function testIndex()
     {
         $this->visit('/')
              ->see('Don\'t have an account?');
     }
+
+    public function testLoginWithNonExistentUser()
+    {
+        $this->post('/')
+             ->see('Incorrect Username or Password');
+    }
+
 }

@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@getIndex');
+
+Route::post('/', 'IndexController@login');
+

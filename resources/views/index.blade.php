@@ -18,10 +18,11 @@
         <?php if (isset($errorMessage)): ?>
           <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <span id="error_message">${errorMessage}</span>
+            <span id="error_message"><?=$errorMessage?></span>
           </div>
         <?php endif ?>
         <form method="POST">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <fieldset>
             <label>Username</label>
             <input id="username" type="text" name="username">
