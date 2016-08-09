@@ -51,4 +51,14 @@ class ExampleTest extends TestCase
              ->click('Sign up for an account here')
              ->see('Create an account');
     }
+
+    public function testSignUpWithPasswordsNotMatching()
+    {
+        $this->visit('/sign-up/')
+             ->type('newuser@twilio.com', 'email')
+             ->type('password123', 'password1')
+             ->type('password456', 'password2')
+             ->press('create_account_btn')
+             ->see('Passwords do not match.');
+    }
 }

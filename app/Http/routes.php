@@ -18,3 +18,5 @@ Route::post('/', 'IndexController@login');
 Route::get('/user/', 'UserController@userPage');
 
 Route::get('/sign-up/', 'SignUpController@signUpPage');
+
+Route::post('/sign-up/', 'SignUpController@signUp');
