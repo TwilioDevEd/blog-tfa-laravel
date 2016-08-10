@@ -22,3 +22,5 @@ Route::get('/user/', ['middleware' => 'auth', 'uses' => 'UserController@userPage
 Route::get('/sign-up/', 'SignUpController@signUpPage');
 
 Route::post('/sign-up/', 'SignUpController@signUp');
+
+Route::get('/logout/', 'LogoutController@logout');

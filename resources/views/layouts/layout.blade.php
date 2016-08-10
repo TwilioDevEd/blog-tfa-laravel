@@ -36,6 +36,14 @@
             Two-Factor Authentication Example
           </a>
           <ul class="nav">
+            <?php if (Auth::check()): ?>
+              <li>
+                <a href="/user/">Home</a>
+              </li>
+              <li>
+                <a id="logout" href="/logout/">Log out</a>
+              </li>
+            <?php endif ?>
           </ul>
         </div>
       </div>
