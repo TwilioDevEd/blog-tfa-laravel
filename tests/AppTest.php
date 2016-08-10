@@ -106,6 +106,16 @@ class ExampleTest extends TestCase
              ->press('Log in')
              ->see('Enable SMS based authentication')
              ->see('Enable app based authentication');
-
     }
+
+    public function testShowEnableTfaPageAfterSignIn()
+    {
+        $this->visit('/')
+             ->type('user@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->click('Enable SMS based authentication')
+             ->see('Enable SMS based Two-Factor Auth');
+    }
+
 }
