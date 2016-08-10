@@ -91,10 +91,21 @@ class ExampleTest extends TestCase
     public function testLogout()
     {
         $this->visit('/')
-             ->type('UsEr@tWiLiO.cOm', 'email')
+             ->type('user@twilio.com', 'email')
              ->type('password', 'password')
              ->press('Log in')
              ->click('Log out')
              ->see('Don\'t have an account?');
+    }
+
+    public function testShowEnableTfaLinksAfterSignIn()
+    {
+        $this->visit('/')
+             ->type('user@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->see('Enable SMS based authentication')
+             ->see('Enable app based authentication');
+
     }
 }
