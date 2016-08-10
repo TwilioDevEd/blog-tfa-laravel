@@ -87,4 +87,14 @@ class ExampleTest extends TestCase
         $this->visit('/user/')
              ->see('Don\'t have an account?');
     }
+
+    public function testLogout()
+    {
+        $this->visit('/')
+             ->type('UsEr@tWiLiO.cOm', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->click('Log out')
+             ->see('Don\'t have an account?');
+    }
 }
