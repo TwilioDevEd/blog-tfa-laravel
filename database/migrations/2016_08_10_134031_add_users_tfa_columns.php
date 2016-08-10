@@ -16,6 +16,7 @@ class AddUsersTfaColumns extends Migration
             $table->string('phoneNumber')->nullable();
             $table->boolean('enableTfaViaSms')->default(false);
             $table->boolean('enableTfaViaApp')->default(false);
+            $table->string('totpSecret')->nullable();
         });
     }
 

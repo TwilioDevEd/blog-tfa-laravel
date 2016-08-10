@@ -13,6 +13,11 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'twilio' => [
+        'accountSid' => env('TWILIO_ACCOUNT_SID'),
+        'authToken' => env('TWILIO_AUTH_TOKEN'),
+        'number' => env('TWILIO_PHONE_NUMBER'),
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

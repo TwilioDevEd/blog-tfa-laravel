@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@twilio.com',
             'password' => bcrypt('password'),
+            'totpSecret' => 'R6LPJTVQXJFRYNDJ'
         ]);
     }
 }

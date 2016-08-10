@@ -15,6 +15,7 @@
       </div>
     <?php endif ?>
     <form method="POST">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <fieldset>
         <label>E-mail</label>
         <input type="email" name="email" id="email" />

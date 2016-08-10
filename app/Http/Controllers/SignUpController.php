@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use Auth;
+use Otp\GoogleAuthenticator;
 
 class SignUpController extends Controller
 {
@@ -27,7 +28,12 @@ class SignUpController extends Controller
                 return view('signup', ['errorMessage' => 'That email is already in use']);
             } else {
                 $id = DB::table('users')->insertGetId(
-                    ['email' => $email, 'password' => $password1, 'name' => $email]
+                    [
+                        'email' => $email, 
+                        'password' => $password1,
+                        'name' => $email,
+                        'totpSecret' => GoogleAuthenticator::generateRandom()
+                    ]
                 );
                 if (Auth::loginUsingId($id)) {
                    return redirect()->intended('/user/');

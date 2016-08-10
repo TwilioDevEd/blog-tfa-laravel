@@ -26,3 +26,5 @@ Route::post('/sign-up/', 'SignUpController@signUp');
 Route::get('/logout/', 'LogoutController@logout');
 
 Route::get('/enable-tfa-via-sms/', 'EnableTfaViaSmsController@enableTfaViaSmsPage');
+
+Route::post('/enable-tfa-via-sms/', 'EnableTfaViaSmsController@enableTfaViaSms');

@@ -36,6 +36,7 @@
           </ol>
         </div>
         <form method="POST">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <formset>
             <label>Your mobile phone number:</label>
             <input type="text" name="phoneNumber" placeholder="(415) 555-1212" />
