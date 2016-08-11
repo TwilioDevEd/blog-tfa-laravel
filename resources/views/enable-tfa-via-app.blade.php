@@ -10,7 +10,7 @@
     <?php if (isset($errorMessage)): ?>
       <div class="alert alert-error">
         <button class="close" type="button" data-dismiss="alert">&times;</button>
-        <span id="error_message"><?=$errorMessage?>)</span>
+        <span id="error_message"><?=$errorMessage?></span>
       </div>
     <?php endif ?>
 
@@ -38,6 +38,7 @@
         <p>Once you have scanned the barcode, enter the 6-digit code below:</p>
       </div>
       <form method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <fieldset>
           <label>Verification code</label>
           <input type="text" name="token" placeholder="123456"/>

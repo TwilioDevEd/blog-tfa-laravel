@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "doctrine/dbal": "~2.3",
         "twilio/sdk": "5.0.0-RC19",
-        "christian-riesen/otp": "^2.0"
+        "christian-riesen/otp": "^2.0",
+        "simplesoftwareio/simple-qrcode": "~1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

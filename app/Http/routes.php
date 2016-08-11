@@ -11,24 +11,32 @@
 |
 */
 
-Route::get('/', 'IndexController@getIndex');
+Route::get('/', ['uses' => 'IndexController@getIndex']);
 
-Route::post('/', 'IndexController@login');
+Route::post('/', ['uses' => 'IndexController@login']);
 
-Route::get('/login', 'IndexController@getIndex');
+Route::get('/login', ['uses' => 'IndexController@getIndex']);
 
-Route::get('/user/', ['middleware' => 'auth', 'uses' => 'UserController@userPage']);
+Route::get('/user/',
+    ['uses' => 'UserController@userPage','middleware' => 'auth']);
 
-Route::get('/sign-up/', 'SignUpController@signUpPage');
+Route::get('/sign-up/', ['uses' => 'SignUpController@signUpPage']);
 
-Route::post('/sign-up/', 'SignUpController@signUp');
+Route::post('/sign-up/', ['uses' => 'SignUpController@signUp']);
 
-Route::get('/logout/', 'LogoutController@logout');
+Route::get('/logout/', ['uses' => 'LogoutController@logout']);
 
-Route::get('/enable-tfa-via-sms/', 'EnableTfaViaSmsController@enableTfaViaSmsPage');
+Route::get('/enable-tfa-via-sms/',
+    ['uses' => 'EnableTfaViaSmsController@enableTfaViaSmsPage', 'middleware' => 'auth']);
 
-Route::post('/enable-tfa-via-sms/', 'EnableTfaViaSmsController@enableTfaViaSms');
+Route::post('/enable-tfa-via-sms/',
+    ['uses' => 'EnableTfaViaSmsController@enableTfaViaSms', 'middleware' => 'auth']);
 
-Route::get('/enable-tfa-via-app/', 'EnableTfaViaAppController@enableTfaViaAppPage');
+Route::get('/enable-tfa-via-app/',
+    ['uses' => 'EnableTfaViaAppController@enableTfaViaAppPage', 'middleware' => 'auth']);
 
-Route::post('/enable-tfa-via-app/', 'EnableTfaViaAppController@enableTfaViaApp');
+Route::post('/enable-tfa-via-app/',
+    ['uses' => 'EnableTfaViaAppController@enableTfaViaApp', 'middleware' => 'auth']);
+
+Route::get('/auth-qr-code.png',
+    ['uses' => 'AuthQrCodeController@qrcode', 'middleware' => 'auth']);
