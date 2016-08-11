@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Otp\Otp;
 
 class ExampleTest extends TestCase
 {
@@ -118,8 +119,11 @@ class ExampleTest extends TestCase
              ->see('Enable SMS based Two-Factor Auth');
     }
 
-    public function testConfigurePhoneNumberAfterSignIn()
+    public function testConfigurePhoneNumberAfterSignInAndEnableSMSTFA()
     {
+        $otp = new Otp();
+        $token = $otp->totp('R6LPJTVQXJFRYNDJ');
+
         $this->visit('/')
              ->type('user@twilio.com', 'email')
              ->type('password', 'password')
@@ -127,7 +131,12 @@ class ExampleTest extends TestCase
              ->click('Enable SMS based authentication')
              ->type('+14155551212', 'phoneNumber')
              ->press('Submit and verify')
-             ->see('An SMS has been sent');
+             ->see('An SMS has been sent')
+             ->type('-1', 'token') // wrong token
+             ->press('Submit and verify')
+             ->see('Please try again.')
+             ->type($token, 'token')
+             ->press('Submit and verify')
+             ->see('You are set up for Two-Factor Authentication via Twilio SMS!');
     }
-
 }

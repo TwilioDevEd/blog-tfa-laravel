@@ -22,12 +22,12 @@ class EnableTfaViaSmsController extends Controller
         $phoneNumber = $request->input('phoneNumber');
         $token = $request->input('token');
         $user = Auth::user();
-
+        $otp = new Otp();
+        
         if ($phoneNumber != null) {
             $user->phoneNumber = $phoneNumber;
             $user->save();
 
-            $otp = new Otp();
             $key = $otp->totp($user->totpSecret);
 
             $client->messages->create($user->phoneNumber,
@@ -41,7 +41,12 @@ class EnableTfaViaSmsController extends Controller
                 . 'it says "Enter your verification code" below.';
 
             return view('enable-tfa-via-sms', ['successMessage' => $successMessage]);
+        } else if ($token != null && $otp->checkTotp($user->totpSecret, $token)) {
+            $successMessage = 'You are set up for Two-Factor Authentication via Twilio SMS!';
+            return view('enable-tfa-via-sms', ['successMessage' => $successMessage]);
+        } else {
+            $errorMessage = 'There was an error verifying your token. Please try again.';
+            return view('enable-tfa-via-sms', ['errorMessage' => $errorMessage]);
         }
-        return view('enable-tfa-via-sms');
     }
 }
