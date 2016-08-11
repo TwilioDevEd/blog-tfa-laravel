@@ -118,16 +118,16 @@ class ExampleTest extends TestCase
              ->see('Enable SMS based Two-Factor Auth');
     }
 
-    // public function testConfigurePhoneNumberAfterSignIn()
-    // {
-    //     $this->visit('/')
-    //          ->type('user@twilio.com', 'email')
-    //          ->type('password', 'password')
-    //          ->press('Log in')
-    //          ->click('Enable SMS based authentication')
-    //          ->type('+14155551212', 'phoneNumber')
-    //          ->press('Submit and verify')
-    //          ->see('An SMS has been sent');
-    // }
+    public function testConfigurePhoneNumberAfterSignIn()
+    {
+        $this->visit('/')
+             ->type('user@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->click('Enable SMS based authentication')
+             ->type('+14155551212', 'phoneNumber')
+             ->press('Submit and verify')
+             ->see('An SMS has been sent');
+    }
 
 }

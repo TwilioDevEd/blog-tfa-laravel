@@ -22,6 +22,12 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
+        $mockTwilioClient = Mockery::mock(\Twilio\Rest\Client::class)->makePartial();
+        $mockTwilioClient->messages = Mockery::mock();
+        $twilioNumber = config('services.twilio')['number'];
+        $mockTwilioClient->messages->shouldReceive('create');
+        $app->instance(\Twilio\Rest\Client::class, $mockTwilioClient);
+        
         return $app;
     }
 
