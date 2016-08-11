@@ -8,7 +8,6 @@ use DB;
 use App\Http\Requests;
 use Twilio\Rest\Client;
 use Otp\Otp;
-use Base32\Base32;
 
 class EnableTfaViaSmsController extends Controller
 {
@@ -42,6 +41,9 @@ class EnableTfaViaSmsController extends Controller
 
             return view('enable-tfa-via-sms', ['successMessage' => $successMessage]);
         } else if ($token != null && $otp->checkTotp($user->totpSecret, $token)) {
+            $user->enableTfaViaSms = true;
+            $user->save();
+
             $successMessage = 'You are set up for Two-Factor Authentication via Twilio SMS!';
             return view('enable-tfa-via-sms', ['successMessage' => $successMessage]);
         } else {

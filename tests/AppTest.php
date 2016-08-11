@@ -109,34 +109,58 @@ class ExampleTest extends TestCase
              ->see('Enable app based authentication');
     }
 
-    public function testShowEnableTfaPageAfterSignIn()
-    {
-        $this->visit('/')
-             ->type('user@twilio.com', 'email')
-             ->type('password', 'password')
-             ->press('Log in')
-             ->click('Enable SMS based authentication')
-             ->see('Enable SMS based Two-Factor Auth');
-    }
-
-    public function testConfigurePhoneNumberAfterSignInAndEnableSMSTFA()
+    public function testEnableTfaViaSmsJourney()
     {
         $otp = new Otp();
         $token = $otp->totp('R6LPJTVQXJFRYNDJ');
 
+        // Login
         $this->visit('/')
              ->type('user@twilio.com', 'email')
              ->type('password', 'password')
-             ->press('Log in')
-             ->click('Enable SMS based authentication')
+             ->press('Log in');
+
+         // Set up phone number
+         $this->click('Enable SMS based authentication')
              ->type('+14155551212', 'phoneNumber')
              ->press('Submit and verify')
-             ->see('An SMS has been sent')
-             ->type('-1', 'token') // wrong token
+             ->see('An SMS has been sent');
+
+         // Submit wrong token
+         $this->type('-1', 'token')
              ->press('Submit and verify')
-             ->see('Please try again.')
-             ->type($token, 'token')
+             ->see('Please try again.');
+
+         // Submit correct token
+         $this->type($token, 'token')
              ->press('Submit and verify')
              ->see('You are set up for Two-Factor Authentication via Twilio SMS!');
+    }
+
+
+    public function testEnableTfaViaAppJourney()
+    {
+        $otp = new Otp();
+        $token = $otp->totp('R6LPJTVQXJFRYNDJ');
+
+        // Login
+        $this->visit('/')
+             ->type('user@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in');
+
+        // Open Enable TFA Via App Page
+        $this->click('Enable app based authentication')
+             ->see('Enable Google Authenticator');
+
+        // Submit wrong token
+        $this->type('-1', 'token')
+             ->press('Submit')
+             ->see('Please try again');
+
+        // Submit correct token
+        $this->type($token, 'token')
+             ->press('Submit')
+             ->see('You are set up for Two-Factor Authentication via Google Authenticator!');
     }
 }
