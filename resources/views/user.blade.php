@@ -10,7 +10,7 @@
     <div class="row">
       <div class="span6">
         <!-- Source: http://openclipart.org/detail/176289/top-secret-by-joshbressers-176289 -->
-        <img src="/static/img/top-secret.png" />
+        <img src="/img/top-secret.png" />
       </div>
       <div class="span6">
         <a class="btn" href="/enable-tfa-via-app/">Enable app based authentication</a>

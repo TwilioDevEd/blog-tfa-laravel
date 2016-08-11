@@ -11,7 +11,7 @@
         </div>
         <!-- Source: -->
         <!-- http://openclipart.org/detail/34273/tango-system-lock-screen-by-warszawianka -->
-        <img src="/static/img/locked-screen.png" />
+        <img src="/img/locked-screen.png" />
       </div>
       <div class="span6">
 
