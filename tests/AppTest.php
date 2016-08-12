@@ -211,4 +211,30 @@ class ExampleTest extends TestCase
              ->press('Submit')
              ->see('(Enabled)');
     }
+
+    public function testEnableTfaVerifyWithSmsAndAppEnabledJourney()
+    {
+        $otp = new Otp();
+
+        // Login
+        $this->visit('/')
+             ->type('user.app_yes.sms_yes@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->see('Account Verification')
+             ->see('Google Authenticator')
+             ->see('The SMS that was just sent to you');
+
+        // Submit wrong token
+        $this->type('-1', 'token')
+             ->press('Submit')
+             ->see('Please try again');
+
+        // Submit correct token
+        $token = $otp->totp('BOXB6K2SJCR5L7CR');
+        $this->type($token, 'token')
+             ->press('Submit')
+             ->see('(Enabled)')
+             ->see('(Enabled for +14155551213)');
+    }
 }

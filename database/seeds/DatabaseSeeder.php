@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'user.app_yes.sms_yes',
             'email' => 'user.app_yes.sms_yes@twilio.com',
             'password' => bcrypt('password'),
-            'totpSecret' => 'BOXB6K2SJCR5L7CR"',
+            'totpSecret' => 'BOXB6K2SJCR5L7CR',
             'phoneNumber' => '+14155551213',
             'enableTfaViaSms' => true,
             'enableTfaViaApp' => true
