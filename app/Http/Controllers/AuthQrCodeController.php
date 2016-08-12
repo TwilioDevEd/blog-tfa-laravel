@@ -13,7 +13,7 @@ class AuthQrCodeController extends Controller
     public function qrcode()
     {
         $user = Auth::user();
-        $label = $user->password;
+        $label = $user->email;
         $secret = $user->totpSecret;
         $otpauthUrl = 'otpauth://totp/' . $label .'?secret=' . Base32::encode($secret);
 

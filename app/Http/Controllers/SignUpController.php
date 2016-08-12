@@ -30,7 +30,7 @@ class SignUpController extends Controller
                 $id = DB::table('users')->insertGetId(
                     [
                         'email' => $email, 
-                        'password' => $password1,
+                        'password' => bcrypt($password1),
                         'name' => $email,
                         'totpSecret' => GoogleAuthenticator::generateRandom()
                     ]

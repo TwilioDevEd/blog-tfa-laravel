@@ -14,13 +14,15 @@ class VerifyTfaController extends Controller
     public function verifyTfaPage(Request $request, Client $client, Otp $otp)
     {
         $user = $request->session()->get('tmp_user');
-        $key = $otp->totp($user->totpSecret);
+        if ($user->enableTfaViaSms) {
+            $key = $otp->totp($user->totpSecret);
 
-        $client->messages->create($user->phoneNumber,
-          [
-              "from" => env('TWILIO_PHONE_NUMBER'),
-              "body" => 'Use this code to log in: ' . $key
-          ]);
+            $client->messages->create($user->phoneNumber,
+              [
+                  "from" => env('TWILIO_PHONE_NUMBER'),
+                  "body" => 'Use this code to log in: ' . $key
+              ]);
+        }
 
         return view('verify-tfa', ['user' => $user]);
     }
