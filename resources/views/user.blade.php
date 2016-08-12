@@ -18,7 +18,7 @@
           <p>
             For apps like "Google Authenticator".
             <br/>
-            <?php if (Auth::check() && Auth::user()->totpEnabledViaApp): ?>
+            <?php if (Auth::check() && Auth::user()->enableTfaViaApp): ?>
               (Enabled)
             <?php endif ?>
           </p>
@@ -28,7 +28,7 @@
           <p>
             For any phone that can receive SMS messages.
             <br/>
-            <?php if (Auth::check() && Auth::user()->totpEnabledViaSms): ?>
+            <?php if (Auth::check() && Auth::user()->enableTfaViaSms): ?>
               (Enabled for <?=Auth::user()->phoneNumber?>)
             <?php endif ?>
           </p>

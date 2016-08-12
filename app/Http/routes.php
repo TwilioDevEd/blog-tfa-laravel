@@ -38,5 +38,12 @@ Route::get('/enable-tfa-via-app/',
 Route::post('/enable-tfa-via-app/',
     ['uses' => 'EnableTfaViaAppController@enableTfaViaApp', 'middleware' => 'auth']);
 
+Route::get('/verify-tfa/',
+    ['uses' => 'VerifyTfaController@verifyTfaPage', 'middleware' => 'auth']);
+
+Route::post('/verify-tfa/',
+    ['uses' => 'VerifyTfaController@verifyTfa', 'middleware' => 'auth']);
+
 Route::get('/auth-qr-code.png',
     ['uses' => 'AuthQrCodeController@qrcode', 'middleware' => 'auth']);
+

@@ -163,4 +163,28 @@ class ExampleTest extends TestCase
              ->press('Submit')
              ->see('You are set up for Two-Factor Authentication via Google Authenticator!');
     }
+
+    public function testEnableTfaVerifyWithOnlySmsEnabledJourney()
+    {
+        $otp = new Otp();
+
+        // Login
+        $this->visit('/')
+             ->type('user.app_no.sms_yes@twilio.com', 'email')
+             ->type('password', 'password')
+             ->press('Log in')
+             ->see('Account Verification')
+             ->see('The SMS that was just sent to you');
+
+        // Submit wrong token
+        $this->type('-1', 'token')
+             ->press('Submit')
+             ->see('Please try again');
+
+        // Submit correct token
+        $token = $otp->totp('NVHWYJ4OV75YW3WC');
+        $this->type($token, 'token')
+             ->press('Submit')
+             ->see('(Enabled for +14155551212)');
+    }
 }
