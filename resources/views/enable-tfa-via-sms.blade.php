@@ -18,7 +18,7 @@
           <span id="success_message"><?=$successMessage?></span>
         </div>
       <?php endif ?>
-      <?php if (Auth::user()->totpEnabledViaSms): ?>
+      <?php if (Auth::user()->enableTfaViaSms): ?>
         <div class="alert alert-success">
           <button class="close" type="button" data-dismiss="alert">&times;</button>
           <span id="toptp_enabled_via_sms_message">
