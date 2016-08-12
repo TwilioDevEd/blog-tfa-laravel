@@ -14,11 +14,10 @@ class EnableTfaViaAppController extends Controller
         return view('enable-tfa-via-app');
     }
 
-    public function enableTfaViaApp(Request $request)
+    public function enableTfaViaApp(Request $request, Otp $otp)
     {
         $token = $request->input('token');
         $user = Auth::user();
-        $otp = new Otp();
         if ($token != null && $otp->checkTotp($user->totpSecret, $token)) {
             $user->enableTfaViaApp = true;
             $user->save();

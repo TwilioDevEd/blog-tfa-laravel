@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Otp\GoogleAuthenticator;
 use App\Http\Requests;
 use Auth;
-use Otp\Otp;
 use Base32\Base32;
 
 class AuthQrCodeController extends Controller

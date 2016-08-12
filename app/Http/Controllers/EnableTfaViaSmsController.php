@@ -16,12 +16,11 @@ class EnableTfaViaSmsController extends Controller
         return view('enable-tfa-via-sms');
     }
 
-    public function enableTfaViaSms(Request $request, Client $client)
+    public function enableTfaViaSms(Request $request, Client $client, Otp $otp)
     {
         $phoneNumber = $request->input('phoneNumber');
         $token = $request->input('token');
         $user = Auth::user();
-        $otp = new Otp();
         
         if ($phoneNumber != null) {
             $user->phoneNumber = $phoneNumber;

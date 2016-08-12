@@ -11,9 +11,8 @@ use DB;
 
 class VerifyTfaController extends Controller
 {
-    public function verifyTfaPage(Request $request, Client $client)
+    public function verifyTfaPage(Request $request, Client $client, Otp $otp)
     {
-        $otp = new Otp();
         $user = $request->session()->get('tmp_user');
         $key = $otp->totp($user->totpSecret);
 
@@ -26,10 +25,9 @@ class VerifyTfaController extends Controller
         return view('verify-tfa', ['user' => $user]);
     }
 
-    public function verifyTfa(Request $request)
+    public function verifyTfa(Request $request, Otp $otp)
     {
         $user = $request->session()->get('tmp_user');
-        $otp = new Otp();
 
         if ($user == null) {
             return view('verify-tfa', ['errorMessage' => 'Error - no credentials']);
