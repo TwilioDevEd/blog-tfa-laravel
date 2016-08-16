@@ -9,7 +9,11 @@ env:
   global:
     - APP_ENV=testing
     - APP_KEY=M0HYKpEoPSPnl7V4Ck6notarealkeyUx
-before_script:
+    - TWILIO_ACCOUNT_SID=my-account-sid
+    - TWILIO_AUTH_TOKEN=my-auth-token
+    - TWILIO_PHONE_NUMBER=+14155551213
+  before_script:
+  - cp .env.example .env
   - php TouchDatabase.php
   - php artisan migrate
   - php artisan db:seed
