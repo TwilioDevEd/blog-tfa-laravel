@@ -12,8 +12,9 @@ env:
     - TWILIO_ACCOUNT_SID=my-account-sid
     - TWILIO_AUTH_TOKEN=my-auth-token
     - TWILIO_PHONE_NUMBER=+14155551213
+  before_install:
+    - cp .env.example .env
+    - php TouchDatabase.php
   before_script:
-  - cp .env.example .env
-  - touch ./storage/app/database_test.sqlite
-  - php artisan migrate
-  - php artisan db:seed
+    - php artisan migrate
+    - php artisan db:seed
