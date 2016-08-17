@@ -6,26 +6,26 @@
   <div class=".container">
     <div>
       <h1>Enable SMS based Two-Factor Auth</h1>
-      <?php if (isset($errorMessage)): ?>
+      @if (isset($errorMessage))
         <div class="alert alert-error">
           <button class="close" type="button" data-dismiss="alert">&times;</button>
-          <span id="error_message"><?=$errorMessage?>)</span>
+          <span id="error_message">{{ $errorMessage }})</span>
         </div>
-      <?php endif ?>
-      <?php if (isset($successMessage)): ?>
+      @endif
+      @if (isset($successMessage))
         <div class="alert alert-success">
           <button class="close" type="button" data-dismiss="alert">&times;</button>
-          <span id="success_message"><?=$successMessage?></span>
+          <span id="success_message">{{ $successMessage }}</span>
         </div>
-      <?php endif ?>
-      <?php if (Auth::user()->enableTfaViaSms): ?>
+      @endif
+      @if (Auth::user()->enableTfaViaSms)
         <div class="alert alert-success">
           <button class="close" type="button" data-dismiss="alert">&times;</button>
           <span id="toptp_enabled_via_sms_message">
             You are set up for Two-Factor Authentication via Twilio SMS!
           </span>
         </div>
-      <?php else: ?>
+      @else
         <div>
           Enabling SMS based Two-Factor Authentication on your account is a two step process:
           <ol>
@@ -48,7 +48,7 @@
             <a class="btn" href="/user">Cancel</a>
           </formset>
         </form>
-      <?php endif ?>
+      @endif
     </div>
   </div>
 

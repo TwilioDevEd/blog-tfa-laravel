@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use DB;
 use App\Http\Requests;
 use Twilio\Rest\Client;
 use Otp\Otp;
@@ -28,11 +27,12 @@ class EnableTfaViaSmsController extends Controller
 
             $key = $otp->totp($user->totpSecret);
 
-            $client->messages->create($user->phoneNumber,
-              [
-                  "from" => env('TWILIO_PHONE_NUMBER'),
-                  "body" => 'Use this code to log in: ' . $key
-              ]);
+            $client->messages->create(
+                $user->phoneNumber,
+                  [
+                      "from" => env('TWILIO_PHONE_NUMBER'),
+                      "body" => 'Use this code to log in: ' . $key
+                  ]);
 
             $successMessage = 'An SMS has been sent to the '
                 . 'phone number you entered. When you get the SMS, enter the code in the SMS where '

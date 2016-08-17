@@ -4,9 +4,13 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Otp\Otp;
+use App\User;
 
-class ExampleTest extends TestCase
+class AppTest extends TestCase
 {
+    use DatabaseMigrations;
+    use DatabaseTransactions;
+
     public function testIndex()
     {
         $this->visit('/')
@@ -30,6 +34,19 @@ class ExampleTest extends TestCase
 
     public function testLoginWithExistentUserAndCorrectPassword()
     {
+        // Set Up
+         User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
+
         $this->visit('/')
              ->type('user@twilio.com', 'email')
              ->type('password', 'password')
@@ -39,6 +56,19 @@ class ExampleTest extends TestCase
 
     public function testLoginWithExistentUserCaseInsensitive()
     {
+        // Set Up
+         User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
+
         $this->visit('/')
              ->type('UsEr@tWiLiO.cOm', 'email')
              ->type('password', 'password')
@@ -65,6 +95,19 @@ class ExampleTest extends TestCase
 
     public function testSignUpWithExistentUser()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
+
         $this->visit('/sign-up/')
              ->type('user@twilio.com', 'email')
              ->type('password', 'password1')
@@ -76,7 +119,7 @@ class ExampleTest extends TestCase
     public function testSignUpWithNewUser()
     {
         $this->visit('/sign-up/')
-             ->type('newuser@twilio.com', 'email')
+             ->type('new_user@twilio.com', 'email')
              ->type('password', 'password1')
              ->type('password', 'password2')
              ->press('create_account_btn')
@@ -91,6 +134,18 @@ class ExampleTest extends TestCase
 
     public function testLogout()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
         $this->visit('/')
              ->type('user@twilio.com', 'email')
              ->type('password', 'password')
@@ -101,6 +156,18 @@ class ExampleTest extends TestCase
 
     public function testShowEnableTfaLinksAfterSignIn()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
         $this->visit('/')
              ->type('user@twilio.com', 'email')
              ->type('password', 'password')
@@ -111,6 +178,18 @@ class ExampleTest extends TestCase
 
     public function testEnableTfaViaSmsJourney()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
         $otp = new Otp();
         $token = $otp->totp('R6LPJTVQXJFRYNDJ');
 
@@ -140,6 +219,18 @@ class ExampleTest extends TestCase
 
     public function testEnableTfaViaAppJourney()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user',
+                'email' => 'user@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'R6LPJTVQXJFRYNDJ',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => false
+            )
+        );
+
         $otp = new Otp();
         $token = $otp->totp('R6LPJTVQXJFRYNDJ');
 
@@ -166,6 +257,19 @@ class ExampleTest extends TestCase
 
     public function testEnableTfaVerifyWithOnlySmsEnabledJourney()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user.app_no.sms_yes',
+                'email' => 'user.app_no.sms_yes@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'NVHWYJ4OV75YW3WC',
+                'phoneNumber' => '+14155551212',
+                'enableTfaViaSms' => true,
+                'enableTfaViaApp' => false
+            )
+        );
+
         $otp = new Otp();
 
         // Login
@@ -190,6 +294,18 @@ class ExampleTest extends TestCase
 
     public function testEnableTfaVerifyWithOnlyAppEnabledJourney()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user.app_yes.sms_no',
+                'email' => 'user.app_yes.sms_no@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'VRZQO34R4LHUH634',
+                'enableTfaViaSms' => false,
+                'enableTfaViaApp' => true
+            )
+        );
+
         $otp = new Otp();
 
         // Login
@@ -214,6 +330,18 @@ class ExampleTest extends TestCase
 
     public function testEnableTfaVerifyWithSmsAndAppEnabledJourney()
     {
+        // Set Up
+        User::create(
+            array(
+                'name' => 'user.app_yes.sms_yes',
+                'email' => 'user.app_yes.sms_yes@twilio.com',
+                'password' => bcrypt('password'),
+                'totpSecret' => 'BOXB6K2SJCR5L7CR',
+                'phoneNumber' => '+14155551213',
+                'enableTfaViaSms' => true,
+                'enableTfaViaApp' => true
+            )
+        );
         $otp = new Otp();
 
         // Login
