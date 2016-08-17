@@ -11,20 +11,21 @@
         </div>
         <!-- Source: -->
         <!-- http://openclipart.org/detail/34273/tango-system-lock-screen-by-warszawianka -->
-        <img src="/static/img/locked-screen.png" />
+        <img src="/img/locked-screen.png" />
       </div>
       <div class="span6">
 
-        <?php if (isset($errorMessage)): ?>
+        @if (isset($errorMessage))
           <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <span id="error_message">${errorMessage}</span>
+            <span id="error_message">{{ $errorMessage }}</span>
           </div>
-        <?php endif ?>
+        @endif
         <form method="POST">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <fieldset>
-            <label>Username</label>
-            <input id="username" type="text" name="username">
+            <label>Email</label>
+            <input id="email" type="text" name="email">
             <label>Password</label>
             <input id="password" type="password" name="password">
             <br/>

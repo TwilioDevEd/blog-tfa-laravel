@@ -26,5 +26,8 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="TWILIO_ACCOUNT_SID" value="my-account-sid"/>
+        <env name="TWILIO_AUTH_TOKEN" value="my-auth-token"/>
+        <env name="TWILIO_PHONE_NUMBER" value="+14155551213"/>
     </php>
 </phpunit>
