@@ -18,9 +18,9 @@
           <p>
             For apps like "Google Authenticator".
             <br/>
-            <?php if (Auth::check() && Auth::user()->enableTfaViaApp): ?>
+            @if (Auth::check() && Auth::user()->enableTfaViaApp)
               (Enabled)
-            <?php endif ?>
+            @endif
           </p>
         </div>
         <a class="btn" href="/enable-tfa-via-sms/">Enable SMS based authentication</a>
@@ -28,9 +28,9 @@
           <p>
             For any phone that can receive SMS messages.
             <br/>
-            <?php if (Auth::check() && Auth::user()->enableTfaViaSms): ?>
-              (Enabled for <?=Auth::user()->phoneNumber?>)
-            <?php endif ?>
+            @if (Auth::check() && Auth::user()->enableTfaViaSms):
+              (Enabled for {{ Auth::user()->phoneNumber }})
+            @endif
           </p>
       </div>
     </div>

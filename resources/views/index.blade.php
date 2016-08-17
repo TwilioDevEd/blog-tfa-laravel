@@ -15,12 +15,12 @@
       </div>
       <div class="span6">
 
-        <?php if (isset($errorMessage)): ?>
+        @if (isset($errorMessage))
           <div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <span id="error_message"><?=$errorMessage?></span>
+            <span id="error_message">{{ $errorMessage }}</span>
           </div>
-        <?php endif ?>
+        @endif
         <form method="POST">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <fieldset>

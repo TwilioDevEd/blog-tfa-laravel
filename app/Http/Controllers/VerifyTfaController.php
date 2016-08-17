@@ -7,7 +7,6 @@ use Twilio\Rest\Client;
 use Otp\Otp;
 use App\Http\Requests;
 use Auth;
-use DB;
 
 class VerifyTfaController extends Controller
 {

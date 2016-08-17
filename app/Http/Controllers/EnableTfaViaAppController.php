@@ -26,6 +26,5 @@ class EnableTfaViaAppController extends Controller
             $errorMessage = 'There was an error verifying your token. Please try again.';
             return view('enable-tfa-via-app', ['errorMessage' => $errorMessage]);
         }
-        return view('enable-tfa-via-app'); 
     }
 }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "86de8a8f62c1b2951688bb9f50a3e096",
-    "content-hash": "b8281618f435680c741c328aedf1bf54",
+    "hash": "5afe1c0bfb78fc15cf6c4505e52f1125",
+    "content-hash": "0059dbc4255320d3d0c0b22714e5b569",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2339,22 +2339,23 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "5.0.0-RC19",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twilio/twilio-php.git",
-                "reference": "43226dde30e04fde18550d9ba3bfcbbd54ee9609"
+                "reference": "f8a4589aa716deea0f1eaf017d667fd4af793cc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/43226dde30e04fde18550d9ba3bfcbbd54ee9609",
-                "reference": "43226dde30e04fde18550d9ba3bfcbbd54ee9609",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/f8a4589aa716deea0f1eaf017d667fd4af793cc1",
+                "reference": "f8a4589aa716deea0f1eaf017d667fd4af793cc1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
+                "apigen/apigen": "^4.1",
                 "phpunit/phpunit": "4.5.*"
             },
             "type": "library",
@@ -2380,7 +2381,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2016-08-08 22:34:24"
+            "time": "2016-08-16 17:48:53"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3808,9 +3809,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "twilio/sdk": 5
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

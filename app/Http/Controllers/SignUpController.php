@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Requests;
 use Auth;
 use Otp\GoogleAuthenticator;
+use App\User;
 
 class SignUpController extends Controller
 {
@@ -23,19 +23,17 @@ class SignUpController extends Controller
         if ($password1 != $password2) {
             return view('signup', ['errorMessage' => 'Passwords do not match.']);
         } else {
-            $users = DB::table('users')->where('email', $email)->get();
-            if (!empty($users)) {
+            $users = User::where('email', $email)->get();
+            if (sizeof($users) > 0) {
                 return view('signup', ['errorMessage' => 'That email is already in use']);
             } else {
-                $id = DB::table('users')->insertGetId(
-                    [
-                        'email' => $email, 
-                        'password' => bcrypt($password1),
-                        'name' => $email,
-                        'totpSecret' => GoogleAuthenticator::generateRandom()
-                    ]
-                );
-                if (Auth::loginUsingId($id)) {
+                $user = new User;
+                $user->email = $email;
+                $user->password = bcrypt($password1);
+                $user->name = $email;
+                $user->totpSecret = GoogleAuthenticator::generateRandom();
+                $user->save();
+                if (Auth::loginUsingId($user->id)) {
                    return redirect()->intended('/user/');
                 }
             }

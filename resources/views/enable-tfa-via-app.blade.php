@@ -7,19 +7,19 @@
     <div>
       <h1>Enable Google Authenticator</h1>
     </div>
-    <?php if (isset($errorMessage)): ?>
+    @if (isset($errorMessage))
       <div class="alert alert-error">
         <button class="close" type="button" data-dismiss="alert">&times;</button>
-        <span id="error_message"><?=$errorMessage?></span>
+        <span id="error_message">{{ $errorMessage }}</span>
       </div>
-    <?php endif ?>
+    @endif
 
-    <?php if (Auth::user()->enableTfaViaApp): ?>
+    @if (Auth::user()->enableTfaViaApp)
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <span id="you_are_set">You are set up for Two-Factor Authentication via Google Authenticator!</span>
       </div>
-    <?php else: ?>
+    @else
       <div>
         <ol>
           <li>
@@ -47,7 +47,7 @@
           <a href="/user" class="btn">Cancel</a>
         </fieldset>
       </form>
-    <?php endif ?>
+    @endif
 
   </div>
 

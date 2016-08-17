@@ -57,6 +57,7 @@
 
   ```bash
   $ php artisan migrate
+  $ DB_CONNECTION=sqlite_test php artisan migrate
   ```
 
 1. Make sure the tests succeed.
