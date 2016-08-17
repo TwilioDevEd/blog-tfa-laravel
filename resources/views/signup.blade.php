@@ -8,13 +8,14 @@
       <h1 id="create_account">Create an account</h1>
       <p>Remember, this is just for demonstration purposes. Don't use a password here that you use anywhere else.</p>
     </div>
-    <?php if (isset($errorMessage)): ?>
+    @if (isset($errorMessage))
       <div class="alert alert-error">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <span id="error_message"><?=$errorMessage?></span>
+        <span id="error_message">{{ $errorMessage }}</span>
       </div>
-    <?php endif ?>
+    @endif
     <form method="POST">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <fieldset>
         <label>E-mail</label>
         <input type="email" name="email" id="email" />

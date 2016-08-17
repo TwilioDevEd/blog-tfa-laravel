@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\User;
 use App\Http\Requests;
 use Auth;
 
@@ -22,14 +22,16 @@ class SignUpController extends Controller
         if ($password1 != $password2) {
             return view('signup', ['errorMessage' => 'Passwords do not match.']);
         } else {
-            $users = DB::table('users')->where('email', $email)->get();
-            if (!empty($users)) {
+            $users = User::where('email', $email)->get();
+            if (sizeof($users) > 0) {
                 return view('signup', ['errorMessage' => 'That email is already in use']);
             } else {
-                $id = DB::table('users')->insertGetId(
-                    ['email' => $email, 'password' => $password1, 'name' => $email]
-                );
-                if (Auth::loginUsingId($id)) {
+                $user = new User;
+                $user->email = $email;
+                $user->password = bcrypt($password1);
+                $user->name = $email;
+                $user->save();
+                if (Auth::loginUsingId($user->id)) {
                    return redirect()->intended('/user/');
                 }
             }
