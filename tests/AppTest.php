@@ -8,7 +8,6 @@ use App\User;
 
 class AppTest extends TestCase
 {
-    use DatabaseMigrations;
     use DatabaseTransactions;
 
     public function testIndex()

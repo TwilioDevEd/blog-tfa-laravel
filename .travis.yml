@@ -13,5 +13,5 @@ env:
     - TWILIO_AUTH_TOKEN=my-auth-token
     - TWILIO_PHONE_NUMBER=+14155551213
 before_install:
-  - cp .env.example .env
   - php TouchDatabase.php
+  - DB_CONNECTION=sqlite_test php artisan migrate

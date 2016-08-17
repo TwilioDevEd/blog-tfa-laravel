@@ -29,10 +29,11 @@ class EnableTfaViaSmsController extends Controller
 
             $client->messages->create(
                 $user->phoneNumber,
-                  [
-                      "from" => env('TWILIO_PHONE_NUMBER'),
-                      "body" => 'Use this code to log in: ' . $key
-                  ]);
+                [
+                    "from" => env('TWILIO_PHONE_NUMBER'),
+                    "body" => 'Use this code to log in: ' . $key
+                ]
+            );
 
             $successMessage = 'An SMS has been sent to the '
                 . 'phone number you entered. When you get the SMS, enter the code in the SMS where '
