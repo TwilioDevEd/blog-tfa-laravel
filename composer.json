@@ -10,7 +10,7 @@
         "doctrine/dbal": "~2.3",
         "twilio/sdk": "^5.0",
         "christian-riesen/otp": "^2.0",
-        "simplesoftwareio/simple-qrcode": "~1"
+        "simplesoftwareio/simple-qrcode": "~2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
