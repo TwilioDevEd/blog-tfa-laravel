@@ -20,57 +20,57 @@
 
 1. First clone this repository and `cd` into it.
 
-   ```
-   $ git clone git@github.com:TwilioDevEd/blog-tfa-laravel.git
-   $ cd blog-tfa-laravel
+   ```bash
+   git clone git@github.com:TwilioDevEd/blog-tfa-laravel.git
+   cd blog-tfa-laravel
    ```
 
 1. Copy the sample configuration file and edit it to match your configuration.
 
-  ```bash
-  $ cp .env.example .env
-  ```
+    ```bash
+    cp .env.example .env
+    ```
 
- You can find your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` in your
- [Twilio Account Settings](https://www.twilio.com/user/account/settings).
- You will also need a `TWILIO_NUMBER`, which you may find [here](https://www.twilio.com/user/account/phone-numbers/incoming).
+    You can find your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` in your
+    [Twilio Account Settings](https://www.twilio.com/user/account/settings).
+    You will also need a `TWILIO_NUMBER`, which you may find [here](https://www.twilio.com/user/account/phone-numbers/incoming).
 
 1. Install dependencies.
 
-  ```bash
-  $ composer install
-  ```
+    ```bash
+    composer install
+    ```
 
 1. Create the sqlite database.
 
-  ```bash
-  $ php TouchDatabase.php
-  ```
+    ```bash
+    php TouchDatabase.php
+    ```
 
 1. Generate an APP_KEY.
 
-  ```bash
-  $ php artisan key:generate
-  ```
+    ```bash
+    php artisan key:generate
+    ```
 
 1. Run the migrations.
 
-  ```bash
-  $ php artisan migrate
-  $ DB_CONNECTION=sqlite_test php artisan migrate
-  ```
+   ```bash
+   php artisan migrate
+   DB_CONNECTION=sqlite_test php artisan migrate
+   ```
 
 1. Make sure the tests succeed.
 
-  ```bash
-  $ ./vendor/bin/phpunit
-  ```
+   ```bash
+   ./vendor/bin/phpunit
+   ```
 
 1. Run the application.
 
-  ```bash
-  $ php artisan serve
-  ```
+   ```bash
+   php artisan serve
+   ```
 
 ## Meta
 
