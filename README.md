@@ -2,9 +2,13 @@
   <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
 </a>
 
-# Blog TFA Post - PHP/Laravel
+# Deprecated Tutorial - Please use Twilio Verify
 
-[![Build Status](https://travis-ci.org/TwilioDevEd/blog-tfa-laravel.svg?branch=master)](https://travis-ci.org/TwilioDevEd/blog-tfa-laravel)
+For new development, we encourage you to use the Verify API. The Verify API is an evolution of the Authy API with continued support for SMS, voice, and email one-time passcodes, and an improved developer experience.
+
+For more about Twilio Verify, please visit the [Twilio Verify Docs](https://www.twilio.com/docs/verify)
+
+# Blog TFA Post - PHP/Laravel
 
 ### Prerequisites
 
